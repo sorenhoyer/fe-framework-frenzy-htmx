@@ -31,11 +31,10 @@ app.get('/api/products', (req,res) => {
 });
 
 app.get('/api/search', (req,res) => {
-    res.setHeader("Content-Type", "text/html");
     const searchResultsHTML = search.results.map(result => {
         return /*html*/`
         <div hx-boost class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="${result.url}">
+            <a href="${result.url}" hx-get="api/products/${result.name}" hx-target="#search-results">
                 <img src="img/star-ship-1.webp"
                         alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
