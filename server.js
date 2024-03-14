@@ -42,7 +42,7 @@ app.listen(port, () => {
 
 app.get('/mobile-menu', (req, res) => {
     res.setHeader("Content-Type", "text/html");
-/*     const mobileMenuTemplate = `
+    const mobileMenuTemplate = `
     <div
     class="sm:hidden"
     id="mobile-menu"
@@ -64,7 +64,7 @@ app.get('/mobile-menu', (req, res) => {
 <div class="absolute z-[index: ]-1 inset-0 bg-gray-700" _="on click trigger closeMobileMenu"></div>
 
 </div>
-`; */
+`;
 
 const dummy = "<p>Hello</p>"
     res.send(dummy);

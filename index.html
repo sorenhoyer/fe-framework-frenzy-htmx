@@ -14,8 +14,12 @@
 
             console.log(JSON.stringify(products, null, 2));
         </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" />
     </head>
-    <body>
+    <body class="flex flex-col h-[100dvh]">
         <header>
             <nav class="bg-gray-800">
                 <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -24,9 +28,11 @@
                             <!-- Mobile menu button-->
                             <button
                                 type="button"
-                                hx-get="/mobile-menu"
-                                hx-target="body"
+                                hx-get="http://localhost:3000/mobile-menu"
+                                hx-target="#mobile-menu"
                                 hx-swap="beforeend"
+                                hx-request='{"noHeaders": true}'
+                                hx-boost="false"
                                 class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                                 aria-controls="mobile-menu"
                                 aria-expanded="false"
@@ -40,9 +46,9 @@
                         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                             <div class="flex flex-shrink-0 items-center">
                                 <img
-                                    class="h-8 w-auto"
-                                    src="https://raw.githubusercontent.com/bigskysoftware/htmx/master/www/static/img/htmx_logo.1.png"
-                                    alt="HTMX shop"
+                                    class="h-10 w-auto invert"
+                                    src="https://1000logos.net/wp-content/uploads/2017/06/Star-Wars-Logo-1.png"
+                                    alt="Star wars ship"
                                 />
                             </div>
                             <div class="hidden sm:ml-6 sm:block">
@@ -73,9 +79,56 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Mobile menu, show/hide based on menu state. -->
+                <div
+                    class="sm:hidden"
+                    id="mobile-menu"
+                    _="on closeMobileMenu add .closing then wait for animationend then remove me"
+                ></div>
             </nav>
         </header>
-        <h1 class="text-3xl font-bold underline">Hello world!</h1>
-        <a href="/another-page.html">Another page</a>
+        <main class="flex-1">
+            <h1 class="text-3xl font-bold underline">Hello world!</h1>
+            <a href="/another-page.html">Another page</a>
+        </main>
+        <footer class="bg-gray-800 py-10 text-white px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl flex gap-4 lg:gap-10">
+                <div>
+                    <h2 class="text-xl">A mother ship for your budget</h2>
+                    <ul class="flex flex-col gap-2 mt-6">
+                        <li>
+                            <a href="/products"> Deluxe </a>
+                        </li>
+                        <li>
+                            <a href="/products"> Luxery </a>
+                        </li>
+                        <li>
+                            <a href="/products"> High end </a>
+                        </li>
+                        <li>
+                            <a href="/products"> Mid end </a>
+                        </li>
+                        <li>
+                            <a href="/products"> Budget </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="text-xl">Contact</h2>
+                    <ul class="flex flex-col gap-2 mt-6">
+                        <li>
+                            <a href="/about-us"> About out </a>
+                        </li>
+                        <li>
+                            <a href="/about-us"> Claims </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p class="border-t border-gray-600 pt-10 mt-10 max-w-7xl mx-auto">
+                © 2024 Star wars ship supplier, Inc. All rights reserved.
+            </p>
+        </footer>
     </body>
 </html>
