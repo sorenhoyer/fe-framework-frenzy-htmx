@@ -1,5 +1,11 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import { getCartById, products, search } from './public/js/db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express()
 
@@ -7,6 +13,19 @@ app.use(express.static('public'))
 app.use(express.static('files'))
 
 const port = 3000
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.get("/cart", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/cart.html"));
+});
+
+app.get("/products", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/products.html"));
+});
+
 
 app.get('/api/products', (req,res) => {
     res.status(200).json({ products });
@@ -61,7 +80,9 @@ app.get('/api/products/:productId', (req,res) => {
 app.get('/api/cart', async (req,res) => {
     const cart = await getCartById('asd');
 
-    res.setHeader("Content-Type", "text/html");
+    console.log(cart)
+
+    res.setHeader("Content-Type", "text/plain");
     res.send(`
         <div>
           <ul>
