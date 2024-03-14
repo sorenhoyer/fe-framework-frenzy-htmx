@@ -64,12 +64,10 @@
                                     <div class="ml-auto">
                                         <input class="bg-gray-50 border w-80 border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search"
                                               name="search" placeholder="Type to search star ships..."
-                                              hx-post="/api/search"
+                                              hx-get="/api/search"
                                               hx-trigger="input changed delay:500ms, search"
                                               hx-target="#search-results"
                                               hx-indicator=".htmx-indicator">
-                                    
-                                              <div id="search-results"></div>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +102,9 @@
             </nav>
         </header>
         <main class="flex-1 p-8">
-            <h1 class="text-3xl font-bold underline">Star Ship Shop!</h1>
+            <h1 class="text-3xl font-bold mb-10">Star Ship Shop!</h1>
+            <section id="search-results" class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+            </section>
             <div class="htmx-indicator" role="status">
                 <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
