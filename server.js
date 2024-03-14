@@ -34,8 +34,8 @@ app.get('/api/search', (req,res) => {
     res.setHeader("Content-Type", "text/html");
     const searchResultsHTML = search.results.map(result => {
         return /*html*/`
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
+        <div hx-boost class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="${result.url}">
                 <img src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
                 <div class="px-4 py-3 w-72">
@@ -101,4 +101,34 @@ app.get('/api/cart', async (req,res) => {
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
+});
+
+app.get('/mobile-menu', (req, res) => {
+    res.setHeader("Content-Type", "text/html");
+    const mobileMenuTemplate = `
+    <div
+    class="sm:hidden"
+    id="mobile-menu"
+    _="on closeMobileMenu add .closing then wait for animationend then remove me"
+><div class="space-y-1 px-2 pb-3 pt-2">
+    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+    <a
+        href="#"
+        class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+        aria-current="page"
+        >Frontpage</a
+    >
+    <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+        >Category</a
+    >
+</div>
+<div class="absolute z-[index: ]-1 inset-0 bg-gray-700" _="on click trigger closeMobileMenu"></div>
+
+</div>
+`;
+
+const dummy = "<p>Hello</p>"
+    res.send(dummy);
 });
