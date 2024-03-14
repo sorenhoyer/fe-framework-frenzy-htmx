@@ -83,14 +83,19 @@ app.get('/api/cart', async (req,res) => {
 
     res.setHeader("Content-Type", "text/plain");
     res.send(`
-        <div>
-          <ul>
+        <div class="flex-column">
+          <div class="flex-row mb-4">
             ${
-              cart?.items?.map(item => {
-                return "<li>{item?.displayName}</li>"
+              cart?.items?.filter(Boolean).map(item => {
+                return `
+                <div class="flex flex-row gap-4">
+                  <div>${item?.displayName}</div>
+                  <div><input type="number" value="${item?.quantity}" /></div>
+                  <div>${item?.price} DKK</div>
+                </div>`
               })
             }
-          </ul>
+          </div>
           <div>
             Total: ${cart.total.value}
           </div>
