@@ -1,14 +1,18 @@
 import express from 'express';
-import { getCartById, products, search } from './js/db.js';
+import { getCartById, products, search } from './public/js/db.js';
 
 const app = express()
+
+app.use(express.static('public'))
+app.use(express.static('files'))
+
 const port = 3000
 
-app.get('/products', (req,res) => {
+app.get('/api/products', (req,res) => {
     res.status(200).json({ products });
 });
 
-app.get('/search', (req,res) => {
+app.get('/api/search', (req,res) => {
     res.setHeader("Content-Type", "text/html");
     const searchResultsHTML = search.results.map(result => {
         return /*html*/`
@@ -47,14 +51,14 @@ app.get('/search', (req,res) => {
     )
 })
 
-app.get('/products/:productId', (req,res) => {
+app.get('/api/products/:productId', (req,res) => {
     res.setHeader("Content-Type", "text/html");
     res.send(`
         <h1>${req.params.productId}</h1>
     `)
 });
 
-app.get('/cart', async (req,res) => {
+app.get('/api/cart', async (req,res) => {
     const cart = await getCartById('asd');
 
     res.setHeader("Content-Type", "text/html");
