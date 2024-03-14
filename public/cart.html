@@ -17,11 +17,132 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
-        <link href="../style.css" rel="stylesheet" />
+        <link href="/style.css" rel="stylesheet" />
     </head>
     <body class="flex flex-col h-[100dvh]">
-        <div>
-            <div hx-get="/api/cart" hx-trigger="load" class="w-full">Cart</div>
-        </div>
-    </body>
+        <header>
+            <nav class="bg-gray-800 relative">
+                <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div class="relative flex h-16 items-center justify-between">
+                        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                            <!-- Mobile menu button-->
+                            <button
+                                type="button"
+                                onclick="document.getElementById('mobile-menu').classList.contains('hidden') ? document.getElementById('mobile-menu').classList.remove('hidden') : document.getElementById('mobile-menu').classList.add('hidden')"
+                                hx-target="#mobile-menu"
+                                class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                                aria-controls="mobile-menu"
+                                aria-expanded="false"
+                            >
+                                <span class="absolute -inset-0.5"></span>
+                                <span class="sr-only">Open main menu</span>
+                                <img class="w-6 h-6 block" src="/burger-menu.svg" alt="Open menu" />
+                                <img class="hidden w-6 h-6" src="/close.svg" alt="Close menu" />
+                            </button>
+                        </div>
+                        <div class="flex flex-1 w-full items-center justify-center sm:items-stretch sm:justify-start">
+                            <div class="flex flex-shrink-0 items-center">
+                                <img
+                                    class="h-10 w-auto invert"
+                                    src="https://1000logos.net/wp-content/uploads/2017/06/Star-Wars-Logo-1.png"
+                                    alt="Star wars ship"
+                                />
+                            </div>
+                            <div class="hidden sm:ml-6 w-full sm:block">
+                                <div class="flex w-full">
+                                    <a
+                                        href="#"
+                                        class="mr-5 bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        aria-current="page"
+                                        >Frontpage</a
+                                    >
+                                    <a
+                                        href="/products"
+                                        class="mr-4 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        >Products</a
+                                    >
+                                    <div class="ml-auto">
+                                        <input class="bg-gray-50 border w-80 border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search"
+                                              name="search" placeholder="Type to search star ships..."
+                                              hx-post="/api/search"
+                                              hx-trigger="input changed delay:500ms, search"
+                                              hx-target="#search-results"
+                                              hx-indicator=".htmx-indicator">
+
+                                              <div id="search-results"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+                        >
+                            <a
+                                href="/cart.html"
+                                class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            >
+                                <img class="h-6 w-6" src="/cart.svg" alt="Go to cart" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu, show/hide based on menu state. -->
+                <div class="hidden absolute inset-x-0 sm:hidden" id="mobile-menu">
+                    <a
+                        href="/"
+                        class="text-white bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                        aria-current="page"
+                        >Frontpage</a
+                    >
+                    <a
+                        href="/products"
+                        class="text-white text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        >Category</a
+                    >
+                </div>
+            </nav>
+        </header>
+        <main class="flex-1 p-8">
+            <h1 class="text-3xl font-bold underline">Star Ship Shop!</h1>
+            <div hx-get="/api/cart" hx-trigger="load" class="w-full">Cart</div></main>
+            <footer class="bg-gray-800 py-10 text-white px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl flex gap-4 lg:gap-10">
+                    <div>
+                        <h2 class="text-xl">A star ship for your budget</h2>
+                        <ul class="flex flex-col gap-2 mt-6">
+                            <li>
+                                <a href="/products"> Deluxe </a>
+                            </li>
+                            <li>
+                                <a href="/products"> Luxery </a>
+                            </li>
+                            <li>
+                                <a href="/products"> High end </a>
+                            </li>
+                            <li>
+                                <a href="/products"> Mid end </a>
+                            </li>
+                            <li>
+                                <a href="/products"> Budget </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-xl">Contact</h2>
+                        <ul class="flex flex-col gap-2 mt-6">
+                            <li>
+                                <a href="/about-us"> About out </a>
+                            </li>
+                            <li>
+                                <a href="/about-us"> Claims </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="border-t border-gray-600 pt-10 mt-10 max-w-7xl mx-auto">
+                    © 2024 Star ship supplier, Inc. All rights reserved.
+                </p>
+            </footer>
+        </body>
     </html>
