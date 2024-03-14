@@ -1,1 +1,27 @@
-<div hx-get="/api/cart" hx-trigger="load" hx-swap="outerHTML">Cart</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            src="https://unpkg.com/htmx.org@1.9.10"
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script type="module">
+            import { products } from "./js/db.js";
+
+            console.log(JSON.stringify(products, null, 2));
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+        <link href="../style.css" rel="stylesheet" />
+    </head>
+    <body class="flex flex-col h-[100dvh]">
+        <div>
+            <div hx-get="/api/cart" hx-trigger="load" class="w-full">Cart</div>
+        </div>
+    </body>
+    </html>

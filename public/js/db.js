@@ -5,10 +5,29 @@ export const products = [
 const cartDB = [
     {
         id: 'asd',
-        items: [],
+        items: [
+            {
+                sku: "sku1",
+                quantity: 1,
+                displayName: "Product 1",
+                price: 50
+            },
+            {
+                sku: "sku2",
+                quantity: 2,
+                displayName: "Product 2",
+                price: 50
+            },
+            {
+                sku: "sku3",
+                quantity: 1,
+                displayName: "Product 3",
+                price: 25
+            }
+        ],
         total: {
             formatted: '0.00 DKK',
-            value: 0,
+            value: 175,
         },
     },
 ];
@@ -42,15 +61,12 @@ export const updateLineItem = async (
         const newLineItem = {
             description: product.description,
             displayName: product.displayName,
-            priceBeforeDiscount: {
-                formatted: `${product.priceBeforeDiscount}`,
-                value: product.priceBeforeDiscount,
-            },
+            price: product.price,
             quantity,
             sku: productId,
         };
         cart.items.push(newLineItem);
-        const cartTotal = cart.items.reduce((partialSum, item) => partialSum + item.priceBeforeDiscount.value, 0);
+        const cartTotal = cart.items.reduce((partialSum, item) => partialSum + item.price.value, 0);
         cart.total = {
             formatted: `${cartTotal} DKK`,
             value: cartTotal,
@@ -65,15 +81,12 @@ export const updateLineItem = async (
             console.log(`line item was not found for product with id ${productId}`);
             return;
         }
-        const pricePerQuantity = existingLineItem.priceBeforeDiscount.value / existingLineItem.quantity;
+        const pricePerQuantity = existingLineItem.price.value / existingLineItem.quantity;
         const price = pricePerQuantity * quantity;
         const formatted = `${price}`;
         const newLineItem = {
             ...existingLineItem,
-            priceBeforeDiscount: {
-                formatted,
-                value: price,
-            },
+            price,
             quantity,
         };
         cart.items[cart.items.findIndex((item) => item.sku === productId)] = newLineItem;
