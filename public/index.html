@@ -21,18 +21,15 @@
     </head>
     <body class="flex flex-col h-[100dvh]">
         <header>
-            <nav class="bg-gray-800">
+            <nav class="bg-gray-800 relative">
                 <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div class="relative flex h-16 items-center justify-between">
                         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                             <!-- Mobile menu button-->
                             <button
                                 type="button"
-                                hx-get="http://localhost:3000/mobile-menu"
+                                onclick="document.getElementById('mobile-menu').classList.contains('hidden') ? document.getElementById('mobile-menu').classList.remove('hidden') : document.getElementById('mobile-menu').classList.add('hidden')"
                                 hx-target="#mobile-menu"
-                                hx-swap="beforeend"
-                                hx-request='{"noHeaders": true}'
-                                hx-boost="false"
                                 class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                                 aria-controls="mobile-menu"
                                 aria-expanded="false"
@@ -81,11 +78,19 @@
                 </div>
 
                 <!-- Mobile menu, show/hide based on menu state. -->
-                <div
-                    class="sm:hidden"
-                    id="mobile-menu"
-                    _="on closeMobileMenu add .closing then wait for animationend then remove me"
-                ></div>
+                <div class="hidden absolute inset-x-0 sm:hidden" id="mobile-menu">
+                    <a
+                        href="/"
+                        class="text-white bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                        aria-current="page"
+                        >Frontpage</a
+                    >
+                    <a
+                        href="/products"
+                        class="text-white text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        >Category</a
+                    >
+                </div>
             </nav>
         </header>
         <main class="flex-1">
