@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import { getCartById, products, search } from './public/js/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
